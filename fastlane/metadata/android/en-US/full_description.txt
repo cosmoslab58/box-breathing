@@ -13,5 +13,5 @@
 <li>session length in minutes, or open-ended</li>
 <li>a get-ready countdown, counting up or down, and volume</li>
 </ul>
-<p>No ads, no accounts, no network access, nothing collected. The screen stays on during a session.</p>
+<p>No ads, no accounts, no network access, nothing collected. Free for everyone; an optional donation link is in Settings. The screen stays on during a session.</p>
 <p><b>Safety.</b> This is a relaxation aid, not medical advice. Holding your breath can make you dizzy or faint: stop if you feel unwell, never use it while driving or in water, and ask a doctor first if you have a medical condition or are pregnant. Use at your own risk.</p>

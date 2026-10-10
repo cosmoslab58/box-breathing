@@ -1,9 +1,12 @@
 package dev.cosmoslab.boxbreathing;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -21,6 +24,8 @@ import java.util.function.IntFunction;
 
 /** Every change saves immediately; the main screen reloads on return. */
 public class SettingsActivity extends Activity {
+    static final String DONATE_URL =
+            "https://www.paypal.com/donate/?business=nathancrosty%40gmail.com&item_name=Box+Breathing&currency_code=USD";
     private static final int[][] PRESETS = {{4, 4, 4, 4}, {6, 6, 6, 6}, {4, 7, 8, 0}, {5, 0, 5, 0}};
     private static final String[] PRESET_NAMES = {"Box", "Long box", "4-7-8", "Coherent"};
 
@@ -113,6 +118,22 @@ public class SettingsActivity extends Activity {
         TextView safety = text(Prefs.DISCLAIMER, 13, BoxView.MUTED);
         safety.setLineSpacing(0, 1.15f);
         col.addView(safety);
+
+        heading(col, "Support");
+        col.addView(text("Box Breathing is free, with no ads and nothing to buy. If it helps you, "
+                + "a donation is welcome but never expected.", 13, BoxView.MUTED));
+        TextView donate = chip("Donate with PayPal");
+        select(donate, false);
+        donate.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(DONATE_URL)));
+            } catch (ActivityNotFoundException e) {
+                // no browser installed; nothing sensible to do
+            }
+        });
+        LinearLayout.LayoutParams dl = new LinearLayout.LayoutParams(-1, dp(48));
+        dl.topMargin = dp(12);
+        col.addView(donate, dl);
 
         setContentView(scroll);
         refresh();

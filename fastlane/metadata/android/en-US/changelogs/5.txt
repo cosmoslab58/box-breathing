@@ -1,0 +1,1 @@
+* Adds an optional PayPal donation link in Settings

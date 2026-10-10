@@ -35,6 +35,12 @@ The APK is signed with this certificate (SHA-256), which every future release wi
 
 The app needs no permissions beyond vibration, has no network access, and collects nothing.
 
+## Support
+
+Box Breathing is free, with no ads and nothing to buy. It exists because a basic, good box
+breathing timer should be free for everyone. If it helps you, a
+[donation via PayPal](https://www.paypal.com/donate/?business=nathancrosty%40gmail.com&item_name=Box+Breathing&currency_code=USD) is welcome but never expected.
+
 ## Build
 
     ./build.sh      # signed release APK -> dist/box-breathing.apk
