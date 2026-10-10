@@ -1,4 +1,4 @@
-<p>A calm, simple timer for box breathing and related patterns.</p>
+<p>A lightweight, calm timer for box breathing and related patterns. The whole app is about 50 KB, smaller than a single photo, and the only permission it asks for is vibration. It runs well on any Android 10+ phone, old or new.</p>
 <p><b>The box.</b> A dot travels the square, one side per phase: up while you breathe in, across the top while you hold, down while you breathe out, and along the bottom for the final hold. An inner square swells and shrinks with your breath, and a big counter shows the seconds.</p>
 <p><b>The audio timer.</b> Breathe with your eyes closed:</p>
 <ul>

@@ -1,6 +1,8 @@
 # Box Breathing
 
-A small native Android app (plain Java, no dependencies) for box breathing and its relatives.
+A lightweight Android timer for box breathing and its relatives. The whole app is about **50 KB**
+(other breathing apps are 50 to 75 MB), it asks only for vibration, and it has no ads, accounts or
+network access. It is plain Java with no dependencies, and every sound is generated in code.
 
 - **The box:** a dot travels the square one side per phase (up = in, top = hold, down = out,
   bottom = hold) and leaves a trail for the round; an inner square swells and shrinks with the breath.

@@ -1,0 +1,2 @@
+* Store listing and README now lead with what makes it different: about 50 KB, vibration is the only permission
+* No changes to the app itself
