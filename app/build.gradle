@@ -1,0 +1,36 @@
+// The signing key comes from the environment at build time (build.sh loads
+// ~/.secrets/box-breathing.env); nothing secret is in this repo.
+plugins { id "com.android.application" }
+
+def env = { String k -> System.getenv(k) ?: { throw new GradleException("$k is not set; build with ./build.sh") }() }
+
+android {
+    namespace "dev.cosmoslab.boxbreathing"
+    compileSdk 35
+    buildToolsVersion "35.0.0"   // the one the build image ships
+    defaultConfig {
+        applicationId "dev.cosmoslab.boxbreathing"
+        minSdk 29
+        targetSdk 35
+        versionCode Integer.parseInt(System.getenv("VERSION_CODE") ?: "1")
+        versionName System.getenv("VERSION_NAME") ?: "dev"
+    }
+    signingConfigs {
+        release {
+            storeFile file(env("KEYSTORE_FILE"))
+            storePassword env("KEYSTORE_PASSWORD")
+            keyAlias "boxbreathing"
+            keyPassword env("KEYSTORE_PASSWORD")
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
