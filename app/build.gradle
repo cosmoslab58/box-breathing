@@ -1,8 +1,9 @@
 // The signing key comes from the environment at build time (build.sh loads
-// ~/.secrets/box-breathing.env); nothing secret is in this repo.
+// ~/.secrets/box-breathing.env); nothing secret is in this repo. Without it the release
+// APK is left unsigned, which is what F-Droid's build server wants (it signs its own).
 plugins { id "com.android.application" }
 
-def env = { String k -> System.getenv(k) ?: { throw new GradleException("$k is not set; build with ./build.sh") }() }
+def keystore = System.getenv("KEYSTORE_FILE")
 
 android {
     namespace "dev.cosmoslab.boxbreathing"
@@ -12,22 +13,30 @@ android {
         applicationId "dev.cosmoslab.boxbreathing"
         minSdk 29
         targetSdk 35
-        versionCode Integer.parseInt(System.getenv("VERSION_CODE") ?: "1")
-        versionName System.getenv("VERSION_NAME") ?: "dev"
+        // bump both for each release and tag it vX.Y.Z; F-Droid reads them from here
+        versionCode 3
+        versionName "1.0.1"
     }
     signingConfigs {
-        release {
-            storeFile file(env("KEYSTORE_FILE"))
-            storePassword env("KEYSTORE_PASSWORD")
-            keyAlias "boxbreathing"
-            keyPassword env("KEYSTORE_PASSWORD")
+        if (keystore) {
+            release {
+                storeFile file(keystore)
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias "boxbreathing"
+                keyPassword System.getenv("KEYSTORE_PASSWORD")
+            }
         }
     }
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
+            if (keystore) signingConfig signingConfigs.release
         }
+    }
+    // Google's encrypted dependency blob in the signing block; F-Droid rejects APKs that carry it
+    dependenciesInfo {
+        includeInApk false
+        includeInBundle false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17

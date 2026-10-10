@@ -1,0 +1,16 @@
+<p>A calm, simple timer for box breathing and related patterns.</p>
+<p><b>The box.</b> A dot travels the square, one side per phase: up while you breathe in, across the top while you hold, down while you breathe out, and along the bottom for the final hold. An inner square swells and shrinks with your breath, and a big counter shows the seconds.</p>
+<p><b>The audio timer.</b> Breathe with your eyes closed:</p>
+<ul>
+<li>a sound every second: tick, beep, spoken count, or off, with an accented first second of each phase</li>
+<li>a cue at each phase change: a pitched chime, a voice saying "Breathe in", "Hold", "Breathe out", or off</li>
+<li>optional vibration on each phase change, and a gong when the session ends</li>
+</ul>
+<p><b>Configurable.</b></p>
+<ul>
+<li>set each phase from 1 to 30 seconds, or 0 to skip a hold</li>
+<li>presets: Box 4-4-4-4, Long box 6-6-6-6, 4-7-8, Coherent 5-5</li>
+<li>session length in minutes, or open-ended</li>
+<li>a get-ready countdown, counting up or down, and volume</li>
+</ul>
+<p>No ads, no accounts, no network access, nothing collected. The screen stays on during a session.</p>

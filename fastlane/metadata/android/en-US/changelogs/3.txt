@@ -1,0 +1,4 @@
+First F-Droid release.
+
+* Animated box, audio second timer, phase cues and configurable phases
+* No functional changes from 1.0.0

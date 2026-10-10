@@ -30,6 +30,10 @@ The app needs no permissions beyond vibration, has no network access, and collec
 
     ./build.sh      # signed release APK -> dist/box-breathing.apk
 
+To release: bump `versionCode` and `versionName` in `app/build.gradle`, add
+`fastlane/metadata/android/en-US/changelogs/<versionCode>.txt`, commit, tag `vX.Y.Z` (signed),
+build, and attach the APK to a GitHub release. F-Droid picks up new tags on its own.
+
 Builds in Docker (Android SDK 35 + JDK 17). The signing key is `~/.secrets/box-breathing.jks` with
 its password in `~/.secrets/box-breathing.env`, both created on first build. Keep them, or later
 builds won't install over an earlier one.

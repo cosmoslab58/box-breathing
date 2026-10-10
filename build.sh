@@ -24,8 +24,6 @@ docker run --rm -v box-breathing-gradle:/gradle box-breathing-build chown "$(id 
 docker run --rm -u "$(id -u):$(id -g)" \
   -e HOME=/tmp -e GRADLE_USER_HOME=/gradle -e KEYSTORE_PASSWORD \
   -e KEYSTORE_FILE=/keys/box-breathing.jks \
-  -e VERSION_CODE="$(git -C "$here" rev-list --count HEAD 2>/dev/null || echo 1)" \
-  -e VERSION_NAME="$(git -C "$here" describe --tags --always 2>/dev/null | sed s/^v// || echo dev)" \
   -v "$here:/src:ro" -v "$secrets/box-breathing.jks:/keys/box-breathing.jks:ro" \
   -v box-breathing-gradle:/gradle -v "$here/dist:/out" box-breathing-build \
   bash -c 'cp -r /src /tmp/w && cd /tmp/w && gradle -q --no-daemon assembleRelease && cp app/build/outputs/apk/release/app-release.apk /out/box-breathing.apk'
