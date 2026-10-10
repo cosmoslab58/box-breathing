@@ -53,6 +53,23 @@ final class Prefs {
         sp.edit().putBoolean(VIBRATE, v).apply();
     }
 
+    static final String DISCLAIMER = "Box Breathing is a breathing timer for general relaxation. "
+            + "It is not medical advice, diagnosis or treatment, and is no substitute for a doctor.\n\n"
+            + "Holding your breath can cause dizziness, lightheadedness or fainting. Breathe gently, "
+            + "stop at once if you feel unwell, and never use it while driving, operating machinery, "
+            + "swimming or anywhere fainting could be dangerous. If you are pregnant or have a heart, "
+            + "lung, blood pressure, seizure or other medical condition, ask a doctor first.\n\n"
+            + "You use this app at your own risk. It is provided as is, without warranty of any kind, "
+            + "and its author accepts no liability for any injury, loss or harm arising from its use.";
+
+    boolean disclaimerAccepted() {
+        return sp.getBoolean("disclaimer", false);
+    }
+
+    void acceptDisclaimer() {
+        sp.edit().putBoolean("disclaimer", true).apply();
+    }
+
     /** Seconds for in, hold, out, hold. */
     int[] phases() {
         int[] p = new int[4];

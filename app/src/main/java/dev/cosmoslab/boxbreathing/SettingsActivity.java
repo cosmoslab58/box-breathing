@@ -109,6 +109,11 @@ public class SettingsActivity extends Activity {
         note.setPadding(0, dp(8), 0, 0);
         col.addView(note);
 
+        heading(col, "Safety");
+        TextView safety = text(Prefs.DISCLAIMER, 13, BoxView.MUTED);
+        safety.setLineSpacing(0, 1.15f);
+        col.addView(safety);
+
         setContentView(scroll);
         refresh();
     }

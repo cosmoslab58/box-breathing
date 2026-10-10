@@ -14,8 +14,8 @@ android {
         minSdk 29
         targetSdk 35
         // bump both for each release and tag it vX.Y.Z; F-Droid reads them from here
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.2"
     }
     signingConfigs {
         if (keystore) {

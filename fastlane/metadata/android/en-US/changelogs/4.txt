@@ -1,0 +1,1 @@
+* Adds a safety notice, shown once on first launch and always available in Settings

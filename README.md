@@ -14,6 +14,15 @@ A small native Android app (plain Java, no dependencies) for box breathing and i
 The clock is anchored to the session start, so ticks never drift. The screen stays on during a
 session; leaving the app pauses it (there is no background service).
 
+## Safety
+
+Box Breathing is a breathing timer for general relaxation. It is not medical advice, diagnosis or
+treatment. Holding your breath can cause dizziness or fainting: breathe gently, stop if you feel
+unwell, and never use it while driving, operating machinery or in water. If you are pregnant or
+have a heart, lung, blood pressure, seizure or other medical condition, ask a doctor first. You use
+it at your own risk; it is provided as is, without warranty, and the author accepts no liability for
+any harm arising from its use (see also the [license](LICENSE)).
+
 ## Install
 
 Download `box-breathing.apk` from the [latest release](https://github.com/cosmoslab58/box-breathing/releases/latest)

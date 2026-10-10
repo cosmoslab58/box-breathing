@@ -1,6 +1,7 @@
 package dev.cosmoslab.boxbreathing;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioAttributes;
@@ -67,6 +68,14 @@ public class MainActivity extends Activity {
             ttsReady = true;
         });
         setContentView(buildUi());
+        if (!prefs.disclaimerAccepted()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Before you start")
+                    .setMessage(Prefs.DISCLAIMER)
+                    .setCancelable(false)
+                    .setPositiveButton("I understand", (d, w) -> prefs.acceptDisclaimer())
+                    .show();
+        }
     }
 
     private View buildUi() {
