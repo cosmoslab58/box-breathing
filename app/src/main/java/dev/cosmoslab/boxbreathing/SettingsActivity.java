@@ -119,6 +119,14 @@ public class SettingsActivity extends Activity {
         safety.setLineSpacing(0, 1.15f);
         col.addView(safety);
 
+        if (!BuildConfig.PLAY) addSupport(col);
+
+        setContentView(scroll);
+        refresh();
+    }
+
+    /** The donation section; left out of the Google Play build (see app/build.gradle). */
+    private void addSupport(LinearLayout col) {
         heading(col, "Support");
         col.addView(text("Box Breathing is free, with no ads and nothing to buy. If it helps you, "
                 + "a donation is welcome but never expected.", 13, BoxView.MUTED));
@@ -134,9 +142,6 @@ public class SettingsActivity extends Activity {
         LinearLayout.LayoutParams dl = new LinearLayout.LayoutParams(-1, dp(48));
         dl.topMargin = dp(12);
         col.addView(donate, dl);
-
-        setContentView(scroll);
-        refresh();
     }
 
     @Override

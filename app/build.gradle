@@ -16,7 +16,10 @@ android {
         // bump both for each release and tag it vX.Y.Z; F-Droid reads them from here
         versionCode 6
         versionName "1.0.4"
+        // -Pplay builds the Google Play bundle: Play's payments policy rules out the PayPal link
+        buildConfigField "boolean", "PLAY", project.hasProperty("play") ? "true" : "false"
     }
+    buildFeatures { buildConfig true }
     signingConfigs {
         if (keystore) {
             release {

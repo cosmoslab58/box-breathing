@@ -26,5 +26,5 @@ docker run --rm -u "$(id -u):$(id -g)" \
   -e KEYSTORE_FILE=/keys/box-breathing.jks \
   -v "$here:/src:ro" -v "$secrets/box-breathing.jks:/keys/box-breathing.jks:ro" \
   -v box-breathing-gradle:/gradle -v "$here/dist:/out" box-breathing-build \
-  bash -c 'cp -r /src /tmp/w && cd /tmp/w && gradle -q --no-daemon assembleRelease bundleRelease && cp app/build/outputs/apk/release/app-release.apk /out/box-breathing.apk && cp app/build/outputs/bundle/release/app-release.aab /out/box-breathing.aab'
+  bash -c 'cp -r /src /tmp/w && cd /tmp/w && gradle -q --no-daemon assembleRelease && cp app/build/outputs/apk/release/app-release.apk /out/box-breathing.apk && gradle -q --no-daemon -Pplay bundleRelease && cp app/build/outputs/bundle/release/app-release.aab /out/box-breathing.aab'
 ls -l "$here/dist/box-breathing.apk" "$here/dist/box-breathing.aab"
