@@ -7,15 +7,15 @@ def keystore = System.getenv("KEYSTORE_FILE")
 
 android {
     namespace "dev.cosmoslab.boxbreathing"
-    compileSdk 35
-    buildToolsVersion "35.0.0"   // the one the build image ships
+    compileSdk 36
+    buildToolsVersion "36.0.0"   // the one the build image ships
     defaultConfig {
         applicationId "dev.cosmoslab.boxbreathing"
         minSdk 29
-        targetSdk 35
+        targetSdk 36
         // bump both for each release and tag it vX.Y.Z; F-Droid reads them from here
-        versionCode 6
-        versionName "1.0.4"
+        versionCode 7
+        versionName "1.0.5"
         // -Pplay builds the Google Play bundle: Play's payments policy rules out the PayPal link
         buildConfigField "boolean", "PLAY", project.hasProperty("play") ? "true" : "false"
     }

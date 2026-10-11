@@ -1,0 +1,2 @@
+* Targets Android 16 (API 36)
+* No visible changes
