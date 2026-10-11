@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build a signed release APK into dist/. The keystore password lives in ~/.secrets/box-breathing.env
+# Build a signed release APK (sideload/GitHub) and AAB (Google Play upload) into dist/. The keystore password lives in ~/.secrets/box-breathing.env
 # and the key in ~/.secrets/box-breathing.jks; both are created on first build and must be kept,
 # or later builds won't install over this one.
 set -euo pipefail
@@ -26,5 +26,5 @@ docker run --rm -u "$(id -u):$(id -g)" \
   -e KEYSTORE_FILE=/keys/box-breathing.jks \
   -v "$here:/src:ro" -v "$secrets/box-breathing.jks:/keys/box-breathing.jks:ro" \
   -v box-breathing-gradle:/gradle -v "$here/dist:/out" box-breathing-build \
-  bash -c 'cp -r /src /tmp/w && cd /tmp/w && gradle -q --no-daemon assembleRelease && cp app/build/outputs/apk/release/app-release.apk /out/box-breathing.apk'
-ls -l "$here/dist/box-breathing.apk"
+  bash -c 'cp -r /src /tmp/w && cd /tmp/w && gradle -q --no-daemon assembleRelease bundleRelease && cp app/build/outputs/apk/release/app-release.apk /out/box-breathing.apk && cp app/build/outputs/bundle/release/app-release.aab /out/box-breathing.aab'
+ls -l "$here/dist/box-breathing.apk" "$here/dist/box-breathing.aab"
