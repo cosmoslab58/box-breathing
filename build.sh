@@ -14,7 +14,7 @@ if [ ! -f "$secrets/box-breathing.jks" ]; then
   docker run --rm -u "$(id -u):$(id -g)" -v "$secrets:/keys" box-breathing-build \
     keytool -genkeypair -keystore /keys/box-breathing.jks -alias boxbreathing -keyalg RSA -keysize 3072 \
       -validity 36500 -storepass "$KEYSTORE_PASSWORD" -keypass "$KEYSTORE_PASSWORD" \
-      -dname "CN=Box Breathing, O=Cosmos Lab"
+      -dname "CN=Box Breathing, O=cosmoslab"
   chmod 600 "$secrets/box-breathing.jks"
 fi
 mkdir -p "$here/dist"
