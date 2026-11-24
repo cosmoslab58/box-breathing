@@ -67,6 +67,8 @@ final class BoxView extends View {
 
     /** A breathing phase is in progress. */
     void show(int phase, float fraction, String title, String big) {
+        // the box is drawn, not text, so describe it for screen readers (only when the words change)
+        if (!title.equals(this.title) || !big.equals(this.big)) setContentDescription(title + " " + big);
         this.phase = phase;
         this.fraction = fraction;
         this.title = title;

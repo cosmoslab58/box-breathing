@@ -18,6 +18,8 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -102,6 +104,7 @@ public class MainActivity extends Activity {
         settings = text("⚙", 26, BoxView.MUTED);
         settings.setPadding(dp(14), dp(6), dp(14), dp(6));
         settings.setContentDescription("Settings");
+        asButton(settings);
         settings.setOnClickListener(v -> {
             stop();
             startActivity(new Intent(this, SettingsActivity.class));
@@ -385,8 +388,21 @@ public class MainActivity extends Activity {
         bg.setCornerRadius(dp(28));
         bg.setColor(primary ? BoxView.ACCENT : SURFACE);
         b.setBackground(bg);
-        b.setClickable(true);
+        asButton(b);
         return b;
+    }
+
+    /** Clickable, and announced by screen readers as a button (TextView alone reads as plain text). */
+    static void asButton(View v) {
+        v.setClickable(true);
+        v.setFocusable(true);
+        v.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
+                super.onInitializeAccessibilityNodeInfo(host, info);
+                info.setClassName(Button.class.getName());
+            }
+        });
     }
 
     int dp(float v) {

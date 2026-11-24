@@ -59,6 +59,7 @@ public class SettingsActivity extends Activity {
         TextView back = text("‹", 34, BoxView.TEXT);
         back.setPadding(0, 0, dp(16), dp(4));
         back.setContentDescription("Back");
+        MainActivity.asButton(back);
         back.setOnClickListener(v -> finish());
         top.addView(back);
         top.addView(text("Settings", 22, BoxView.TEXT));
@@ -174,7 +175,11 @@ public class SettingsActivity extends Activity {
     private void stepper(LinearLayout col, String title, String key, int min, int max, IntFunction<String> fmt) {
         LinearLayout row = row(col, title);
         TextView minus = round("−"), plus = round("+");
+        minus.setContentDescription("Decrease " + title);
+        plus.setContentDescription("Increase " + title);
         TextView value = text("", 17, BoxView.TEXT);
+        // read the new value aloud after + or −
+        value.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
         value.setGravity(Gravity.CENTER);
         value.setMinWidth(dp(72));
         minus.setOnClickListener(v -> {
@@ -247,7 +252,7 @@ public class SettingsActivity extends Activity {
         TextView c = text(s, 14, BoxView.TEXT);
         c.setGravity(Gravity.CENTER);
         c.setPadding(dp(4), dp(10), dp(4), dp(10));
-        c.setClickable(true);
+        MainActivity.asButton(c);
         return c;
     }
 
@@ -257,6 +262,7 @@ public class SettingsActivity extends Activity {
         bg.setColor(on ? BoxView.ACCENT : MainActivity.SURFACE);
         c.setBackground(bg);
         c.setTextColor(on ? MainActivity.BG : BoxView.TEXT);
+        c.setSelected(on); // screen readers say "selected"
     }
 
     private TextView round(String s) {
@@ -266,7 +272,7 @@ public class SettingsActivity extends Activity {
         bg.setShape(GradientDrawable.OVAL);
         bg.setColor(MainActivity.SURFACE);
         b.setBackground(bg);
-        b.setClickable(true);
+        MainActivity.asButton(b);
         return b;
     }
 
