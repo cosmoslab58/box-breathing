@@ -8,7 +8,8 @@ ads and no crash reporting. Nothing you do in it leaves your phone.
 - **Permissions:** the only permission is vibration, used for the optional cue at each phase change.
 - **Settings:** your timer settings (phase lengths, sounds, session length) are stored on your phone
   only, and are deleted when you uninstall the app.
-- **Donations:** the optional "Donate with PayPal" button in Settings opens PayPal in your web browser.
+- **Donations:** in the GitHub and F-Droid versions only (not the Google Play version), the optional
+  "Donate with PayPal" button in Settings opens PayPal in your web browser.
   The app sends nothing to PayPal itself; anything you do on PayPal's site is covered by
   [PayPal's privacy policy](https://www.paypal.com/myaccount/privacy/privacyhub).
 - **Google Play:** if you install from Google Play, Google handles the download and any purchase under
