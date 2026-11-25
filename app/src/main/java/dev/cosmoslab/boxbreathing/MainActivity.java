@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.os.VibrationAttributes;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -359,9 +360,18 @@ public class MainActivity extends Activity {
         tts.speak(words, TextToSpeech.QUEUE_FLUSH, b, "box");
     }
 
+    /**
+     * Vibrates as an alarm-type cue. Without a usage, Android treats it as touch feedback and drops it
+     * whenever "Vibrate on touch" is off (issue #1).
+     */
     private void buzz(long ms) {
-        if (vibrator != null && vibrator.hasVibrator())
-            vibrator.vibrate(VibrationEffect.createOneShot(ms, VibrationEffect.DEFAULT_AMPLITUDE));
+        if (vibrator == null || !vibrator.hasVibrator()) return;
+        VibrationEffect effect = VibrationEffect.createOneShot(ms, VibrationEffect.DEFAULT_AMPLITUDE);
+        if (Build.VERSION.SDK_INT >= 33) {
+            vibrator.vibrate(effect, VibrationAttributes.createForUsage(VibrationAttributes.USAGE_ALARM));
+        } else {
+            vibrator.vibrate(effect, new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build());
+        }
     }
 
     // ---- helpers ----
