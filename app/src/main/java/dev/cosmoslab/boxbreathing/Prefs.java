@@ -53,6 +53,15 @@ final class Prefs {
         sp.edit().putBoolean(VIBRATE, v).apply();
     }
 
+    /** Keep running with the screen off (foreground service + notification). Off by default. */
+    boolean background() {
+        return sp.getBoolean("background", false);
+    }
+
+    void putBackground(boolean v) {
+        sp.edit().putBoolean("background", v).apply();
+    }
+
     static final String DISCLAIMER = "Box Breathing is a breathing timer for general relaxation. "
             + "It is not medical advice, diagnosis or treatment, and is no substitute for a doctor.\n\n"
             + "Holding your breath can cause dizziness, lightheadedness or fainting. Breathe gently, "

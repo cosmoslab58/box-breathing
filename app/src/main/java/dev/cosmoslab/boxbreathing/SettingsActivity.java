@@ -1,8 +1,10 @@
 package dev.cosmoslab.boxbreathing;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
@@ -94,6 +96,23 @@ public class SettingsActivity extends Activity {
         stepper(col, "Length", Prefs.MINUTES, 0, 60, v -> v == 0 ? "Open" : v + " min");
         stepper(col, "Get-ready countdown", Prefs.LEAD, 0, 10, v -> v == 0 ? "Off" : v + " s");
         segmented(col, "Count", Prefs.COUNT, new String[]{"up", "down"}, new String[]{"1 → 4", "4 → 1"});
+        Switch bg = new Switch(this);
+        bg.setText("Keep running with the screen off");
+        bg.setTextColor(BoxView.TEXT);
+        bg.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        bg.setChecked(prefs.background());
+        bg.setOnCheckedChangeListener((b, on) -> {
+            prefs.putBackground(on);
+            // Android 13+ needs permission to show the session notification; asked only when turned on
+            if (on && Build.VERSION.SDK_INT >= 33
+                    && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+        });
+        bg.setPadding(0, dp(14), 0, dp(4));
+        col.addView(bg);
+        TextView bgNote = text("Ticks and cues continue when the screen turns off or you switch apps. "
+                + "Shows a notification while a session runs.", 13, BoxView.MUTED);
+        col.addView(bgNote);
 
         heading(col, "Sound");
         segmented(col, "Every second", Prefs.SECOND,

@@ -5,7 +5,10 @@ Box Breathing (`dev.cosmoslab.boxbreathing`), by cosmoslab. Effective 11 October
 **Box Breathing collects no data.** The app has no network access, no accounts, no analytics, no
 ads and no crash reporting. Nothing you do in it leaves your phone.
 
-- **Permissions:** the only permission is vibration, used for the optional cue at each phase change.
+- **Permissions:** by default the only permission used is vibration, for the optional cue at each
+  phase change. If you turn on "Keep running with the screen off", the app also shows a notification
+  (Android 13+ asks your permission first) and keeps the phone awake during a session so the timer
+  continues with the screen off. These are used only while a session runs and send nothing anywhere.
 - **Settings:** your timer settings (phase lengths, sounds, session length) are stored on your phone
   only, and are deleted when you uninstall the app.
 - **Donations:** in the GitHub and F-Droid versions only (not the Google Play version), the optional

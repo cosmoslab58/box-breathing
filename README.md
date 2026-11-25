@@ -1,8 +1,8 @@
 # Box Breathing
 
 A lightweight Android timer for box breathing and its relatives. The whole app is about **50 KB**
-(other breathing apps are 50 to 75 MB), it asks only for vibration, and it has no ads, accounts or
-network access. It is plain Java with no dependencies, and every sound is generated in code.
+(other breathing apps are 50 to 75 MB), out of the box it asks only for vibration, and it has no ads,
+accounts or network access. It is plain Java with no dependencies, and every sound is generated in code.
 
 - **The box:** a dot travels the square one side per phase (up = in, top = hold, down = out,
   bottom = hold) and leaves a trail for the round; an inner square swells and shrinks with the breath.
@@ -12,9 +12,12 @@ network access. It is plain Java with no dependencies, and every sound is genera
 - **Configurable:** each of the four phases (0 skips a hold), presets (Box 4·4·4·4, Long box 6·6·6·6,
   4-7-8, Coherent 5·5), session length in minutes (rounded up to whole rounds, or open-ended),
   get-ready countdown, count up or down, volume.
+- **Screen off (optional):** turn on "Keep running with the screen off" and the ticks and cues carry
+  on when the screen turns off or you switch apps. It shows a notification while a session runs
+  (a foreground service; Android 13+ asks for notification permission when you turn it on).
 
 The clock is anchored to the session start, so ticks never drift. The screen stays on during a
-session; leaving the app pauses it (there is no background service).
+session. By default, leaving the app pauses it; with the screen-off option on, it keeps going.
 
 ## Safety
 
@@ -35,7 +38,9 @@ The APK is signed with this certificate (SHA-256), which every future release wi
 
     3b:7e:ed:3c:52:73:15:a5:81:99:59:2d:78:a0:ff:0f:ca:24:1f:3f:4a:5f:c9:7d:48:58:f3:3f:57:39:53:5c
 
-The app needs no permissions beyond vibration, has no network access, and collects nothing.
+By default the app uses only the vibration permission. The optional screen-off mode also uses
+notifications, a foreground service and a wake lock, and only while a session runs. It has no
+network access and collects nothing.
 
 ## Support
 

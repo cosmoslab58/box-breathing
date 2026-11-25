@@ -1,4 +1,4 @@
-<p>A lightweight, calm timer for box breathing and related patterns. The whole app is about 50 KB, smaller than a single photo, and the only permission it asks for is vibration. It runs well on any Android 10+ phone, old or new.</p>
+<p>A lightweight, calm timer for box breathing and related patterns. The whole app is about 50 KB, smaller than a single photo, and out of the box the only permission it asks for is vibration. It runs well on any Android 10+ phone, old or new.</p>
 <p><b>The box.</b> A dot travels the square, one side per phase: up while you breathe in, across the top while you hold, down while you breathe out, and along the bottom for the final hold. An inner square swells and shrinks with your breath, and a big counter shows the seconds.</p>
 <p><b>The audio timer.</b> Breathe with your eyes closed:</p>
 <ul>
@@ -12,6 +12,7 @@
 <li>presets: Box 4-4-4-4, Long box 6-6-6-6, 4-7-8, Coherent 5-5</li>
 <li>session length in minutes, or open-ended</li>
 <li>a get-ready countdown, counting up or down, and volume</li>
+<li>optional: keep running with the screen off (shows a notification during a session)</li>
 </ul>
-<p>No ads, no accounts, no network access, nothing collected. Free for everyone; an optional donation link is in Settings. The screen stays on during a session.</p>
+<p>No ads, no accounts, no network access, nothing collected. Free for everyone; an optional donation link is in Settings. The screen stays on during a session; with the screen-off option on, you can lock the phone and it keeps going.</p>
 <p><b>Safety.</b> This is a relaxation aid, not medical advice. Holding your breath can make you dizzy or faint: stop if you feel unwell, never use it while driving or in water, and ask a doctor first if you have a medical condition or are pregnant. Use at your own risk.</p>

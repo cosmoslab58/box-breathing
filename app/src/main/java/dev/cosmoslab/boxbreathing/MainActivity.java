@@ -144,13 +144,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        // No foreground service: leaving the app pauses rather than ticking unreliably in the background.
-        if (state == State.RUNNING) pause();
+        // Without the screen-off option there is no foreground service, so leaving the app pauses
+        // rather than ticking unreliably in the background. With it, SessionService keeps us running.
+        if (state == State.RUNNING && !prefs.background()) pause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        SessionService.stop(this);
         handler.removeCallbacksAndMessages(null);
         sounds.release();
         tts.shutdown();
@@ -189,6 +191,7 @@ public class MainActivity extends Activity {
         lastKey = Long.MIN_VALUE;
         state = State.RUNNING;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (prefs.background()) SessionService.start(this);
         handler.post(beat);
         box.postOnAnimation(frame);
         refreshButtons();
@@ -199,6 +202,7 @@ public class MainActivity extends Activity {
         state = State.PAUSED;
         handler.removeCallbacks(beat);
         tts.stop();
+        SessionService.stop(this);
         stats.setText("Paused · " + stats.getText());
         refreshButtons();
     }
@@ -206,6 +210,7 @@ public class MainActivity extends Activity {
     private void resume() {
         t0 += SystemClock.uptimeMillis() - pausedAt;
         state = State.RUNNING;
+        if (prefs.background()) SessionService.start(this);
         handler.post(beat);
         box.postOnAnimation(frame);
         refreshButtons();
@@ -214,6 +219,7 @@ public class MainActivity extends Activity {
     private void stop() {
         handler.removeCallbacks(beat);
         tts.stop();
+        SessionService.stop(this);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         loadConfig();
     }
@@ -221,6 +227,7 @@ public class MainActivity extends Activity {
     private void complete() {
         state = State.DONE;
         handler.removeCallbacks(beat);
+        SessionService.stop(this);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         sounds.play(Sounds.GONG, prefs.gain());
         if (prefs.str(Prefs.CUE).equals("voice")) say("Well done");
