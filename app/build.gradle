@@ -14,8 +14,8 @@ android {
         minSdk 29
         targetSdk 36
         // bump both for each release and tag it vX.Y.Z; F-Droid reads them from here
-        versionCode 8
-        versionName "1.0.6"
+        versionCode 9
+        versionName "1.0.7"
         // -Pplay builds the Google Play bundle: Play's payments policy rules out the PayPal link
         buildConfigField "boolean", "PLAY", project.hasProperty("play") ? "true" : "false"
     }

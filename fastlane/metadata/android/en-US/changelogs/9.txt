@@ -1,0 +1,1 @@
+* New, optional: "Keep running with the screen off" in Settings. Ticks and cues continue with the screen locked or in another app, with a notification while a session runs. Off by default; with it off the app still uses only vibration.
