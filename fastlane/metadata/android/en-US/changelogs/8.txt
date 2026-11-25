@@ -1,0 +1,2 @@
+* Fix: "Vibrate on phase change" now works even when "Vibrate on touch" is turned off in Android settings
+* Accessibility: buttons, selected options and the breathing box are announced properly by screen readers
